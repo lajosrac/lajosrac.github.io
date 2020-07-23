@@ -1,11 +1,112 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test</title>
+  <meta charset="utf-8">
+  <title>Click</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
+
 <body>
-    <h1>Teszt</h1>
+
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+  <p class="displayCount">TOTAL Clicks: </p>
+    <button type="button" class=" clicker btn btn-secondary btn-lg btn-block">Click</button>
+  </div>
+  </br>
+  <div class="container">
+  	<button type="button" class="addTenBtn btn btn-outline-primary">Add 10 <span class="addTenLimitNr"></span></button>
+	<button type="button" class="doubleBtn btn btn-outline-primary">2x Clicks <span class="doubleLimitNr"></span></button>
+	<button type="button" class="totalDoubleBtn btn btn-outline-primary">Double Total Clicks <span class="totalDoubleLimitNr"></span></button>
+	<button type="button" class="addRandomBtn btn btn-outline-primary">Add random <span class="randomValue"></span> <span class="addRandomLimitNr"></span></button>
+	<button type="button" class="resetBtn btn btn-outline-danger">RESET</button>
+	</br>
+	</div>
+</div>
+
+<script>
+
+let count = 0;
+let addTenLimit = 10;
+let addTenLimitNr = document.querySelector('.addTenLimitNr');
+let doubleLimit = 10;
+let doubleLimitNr = document.querySelector('.doubleLimitNr');
+let totalDoubleLimit = 1;
+let totalDoubleLimitNr = document.querySelector('.totalDoubleLimitNr')
+let randomLimit = 2;
+let randomNumber = Math.floor(Math.random() * 10000) +1;
+let addRandomLimitNr = document.querySelector('.addRandomLimitNr');
+let randomValue = document.querySelector('.randomValue');
+
+let displayCount = document.querySelector('.displayCount');
+const clicker = document.querySelector('.clicker');
+const addTenBtn = document.querySelector('.addTenBtn');
+const doubleBtn = document.querySelector('.doubleBtn');
+const totalDoubleBtn = document.querySelector('.totalDoubleBtn');
+const addRandomBtn = document.querySelector('.addRandomBtn');
+
+addTenLimitNr.textContent = '(' + addTenLimit-- + ')';
+doubleLimitNr.textContent = '(' + doubleLimit-- + ')';
+totalDoubleLimitNr.textContent = '(' + totalDoubleLimit-- + ')';
+addRandomLimitNr.textContent = '(' + randomLimit-- + ')';
+randomValue.textContent = '(' + randomNumber + ')';
+
+function addCount() {
+	count++
+	displayCount.textContent ='TOTAL Clicks: ' + count
+}
+
+function addTen() {
+	count = 10 + count;
+	displayCount.textContent ='TOTAL Clicks: ' + count
+	if (addTenLimit == 0) {
+		addTenBtn.disabled = true
+	}
+	addTenLimitNr.textContent = '(' + addTenLimit-- +')'
+}
+
+
+function doubleClick() {
+	count = 2 + count;
+	displayCount.textContent ='TOTAL Clicks: ' + count
+	if (doubleLimit == 0) {
+		doubleBtn.disabled = true
+	}
+	doubleLimitNr.textContent = '(' + doubleLimit-- +')'
+}
+
+function totalDouble() {
+	count = count*2;
+	displayCount.textContent ='TOTAL Clicks: ' + count
+	if (totalDoubleLimit == 0) {
+		totalDoubleBtn.disabled = true
+	}
+	totalDoubleLimitNr.textContent = '(' + totalDoubleLimit-- +')'
+}
+
+function addRandom() {
+	count = count + randomNumber;
+	displayCount.textContent ='TOTAL Clicks: ' + count
+	if (randomLimit == 0) {
+		addRandomBtn.disabled = true
+	}
+	randomNumber = Math.floor(Math.random() * 10000) +1;
+	addRandomLimitNr.textContent = '(' + randomLimit-- +')'
+	randomValue.textContent  ='(' + randomNumber +')'
+}
+
+clicker.addEventListener('click', addCount);
+addTenBtn.addEventListener('click', addTen);
+doubleBtn.addEventListener('click', doubleClick);
+totalDoubleBtn.addEventListener('click', totalDouble);
+addRandomBtn.addEventListener('click', addRandom);
+
+
+
+</script>
+<!-- Bootstrap -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>
